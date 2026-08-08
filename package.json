@@ -1,0 +1,29 @@
+{
+	"name": "@turystack/frontend-config",
+	"description": "Shared biome + TypeScript config for turystack web and mobile apps.",
+	"private": false,
+	"version": "1.0.0",
+	"sideEffects": false,
+	"exports": {
+		"./biome": "./biome.json",
+		"./tsconfig.web": "./tsconfig.web.json",
+		"./tsconfig.web.json": "./tsconfig.web.json",
+		"./tsconfig.mobile": "./tsconfig.mobile.json",
+		"./tsconfig.mobile.json": "./tsconfig.mobile.json"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"files": [
+		"biome.json",
+		"tsconfig.web.json",
+		"tsconfig.mobile.json"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/turystack/frontend-config.git"
+	}
+}

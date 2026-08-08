@@ -1,0 +1,115 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.5.4/schema.json",
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"includes": [
+			"**/src/**/*",
+			"**/index.html",
+			"**/vite.config.ts",
+			"**/kubb.config.ts",
+			"**/app.config.ts",
+			"!**/src/routeTree.gen.ts",
+			"!**/src/~sdk",
+			"!**/*.css"
+		]
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "space",
+		"indentWidth": 2,
+		"lineEnding": "lf",
+		"lineWidth": 80,
+		"formatWithErrors": false
+	},
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": {
+					"level": "on",
+					"options": {
+						"groups": [
+							[":NODE:"],
+							":BLANK_LINE:",
+							[":PACKAGE:", "!@turystack/**", "!@repo/**"],
+							":BLANK_LINE:",
+							["@turystack/**"],
+							":BLANK_LINE:",
+							["@repo/**"],
+							":BLANK_LINE:",
+							["#/**"],
+							":BLANK_LINE:",
+							[":PATH:"]
+						]
+					}
+				},
+				"useSortedAttributes": { "level": "on", "options": {} },
+				"useSortedKeys": { "level": "on", "options": {} },
+				"useSortedProperties": { "level": "on", "options": {} }
+			}
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"nursery": {
+				"useSortedClasses": {
+					"fix": "safe",
+					"level": "error",
+					"options": {
+						"attributes": ["className"],
+						"functions": ["tv"]
+					}
+				}
+			},
+			"style": {
+				"useBlockStatements": "error"
+			},
+			"suspicious": {
+				"noConsole": {
+					"level": "warn",
+					"options": {
+						"allow": ["warn", "error"]
+					}
+				}
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"jsxQuoteStyle": "double",
+			"semicolons": "asNeeded",
+			"arrowParentheses": "always",
+			"bracketSameLine": false,
+			"bracketSpacing": true,
+			"attributePosition": "multiline",
+			"trailingCommas": "all",
+			"expand": "always"
+		}
+	},
+	"json": {
+		"parser": {
+			"allowComments": true,
+			"allowTrailingCommas": true
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*.json"],
+			"assist": {
+				"actions": {
+					"source": {
+						"useSortedKeys": { "level": "off", "options": {} },
+						"useSortedProperties": { "level": "off", "options": {} }
+					}
+				}
+			}
+		}
+	]
+}
