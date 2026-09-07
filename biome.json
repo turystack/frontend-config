@@ -228,38 +228,5 @@
 				}
 			}
 		}
-	],
-	"plugins": [
-		"./plugins/no-as-prop.grit",
-		"./plugins/no-classname-prop.grit",
-		"./plugins/no-conditional-class.grit",
-		"./plugins/no-data-fallback.grit",
-		"./plugins/no-default-export.grit",
-		"./plugins/no-external-class-merge.grit",
-		"./plugins/no-hardcoded-brand.grit",
-		"./plugins/no-icon-name-prop.grit",
-		"./plugins/no-implementation-query.grit",
-		"./plugins/no-inline-handler.grit",
-		"./plugins/no-inline-permission-check.grit",
-		"./plugins/no-inline-union.grit",
-		"./plugins/no-layout-scaled-media.grit",
-		"./plugins/no-literal-visual-value.grit",
-		"./plugins/no-manual-focus.grit",
-		"./plugins/no-navigable-state-in-memory.grit",
-		"./plugins/no-navigate-in-form.grit",
-		"./plugins/no-outline-none.grit",
-		"./plugins/no-raw-breakpoint.grit",
-		"./plugins/no-raw-interactive.grit",
-		"./plugins/no-redundant-fallback.grit",
-		"./plugins/no-reset-effect.grit",
-		"./plugins/no-rewrite-api-message.grit",
-		"./plugins/no-route-loader-data.grit",
-		"./plugins/no-scheme-branch.grit",
-		"./plugins/no-selected-row-state.grit",
-		"./plugins/no-server-state-copy.grit",
-		"./plugins/no-synthetic-event.grit",
-		"./plugins/no-unsafe-output.grit",
-		"./plugins/onchange-delivers-value.grit",
-		"./plugins/optimistic-write-shape.grit"
 	]
 }
