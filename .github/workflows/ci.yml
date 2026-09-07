@@ -20,7 +20,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: 'pnpm'
 
       # No lockfile here: this package ships config and plugins, and its only
       # dependency is the biome the fixtures are proved against.
