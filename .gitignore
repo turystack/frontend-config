@@ -7,6 +7,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# CI installs without one on purpose: this package ships configuration,
+# and pinning its only devDependency would pin the biome the fixtures prove.
+pnpm-lock.yaml
+
 node_modules
 dist
 dist-ssr

@@ -35,7 +35,11 @@
 		"url": "https://github.com/turystack/frontend-config.git"
 	},
 	"scripts": {
+		"check:baseline": "node scripts/check-baseline.mjs",
 		"check:fixtures": "node scripts/check-fixtures.mjs"
+	},
+	"dependencies": {
+		"@turystack/config": "^1.0.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.2"

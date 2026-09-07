@@ -146,9 +146,11 @@
 									{
 										"group": [
 											"@/routes/**",
-											"#/routes/**"
+											"@/routes",
+											"#/routes/**",
+											"#/routes"
 										],
-										"message": "COM-3 / RTE-1: a component never reads the router — it receives props and emits callbacks."
+										"message": "COM-3 / RTE-1: a component never reads the router \u2014 it receives props and emits callbacks."
 									}
 								]
 							}
@@ -198,11 +200,15 @@
 									{
 										"group": [
 											"@/~sdk/**",
+											"@/~sdk",
 											"#/~sdk/**",
+											"#/~sdk",
 											"@/features/**",
-											"@/routes/**"
+											"@/features",
+											"@/routes/**",
+											"@/routes"
 										],
-										"message": "CPS-5: a primitive is domain-agnostic — no SDK, feature or route import."
+										"message": "CPS-5: a primitive is domain-agnostic \u2014 no SDK, feature or route import."
 									}
 								]
 							}

@@ -1,3 +1,4 @@
+import { coverage, FLOOR } from '@turystack/config/vitest'
 import { defineConfig } from 'vitest/config'
 
 /**
@@ -5,9 +6,10 @@ import { defineConfig } from 'vitest/config'
  *
  * Same two decisions as the backend, for the same reasons: a suite that passes
  * with no tests is a gate that cannot fail, and the floor is a number rather
- * than an intention.
+ * than an intention. The number itself is the backend's too — it comes from
+ * `@turystack/config`, which is what stops the two from drifting apart.
  */
-export const FLOOR = 85
+export { FLOOR }
 
 export function web({ plugins, ...overrides } = {}) {
 	return defineConfig({
@@ -17,7 +19,7 @@ export function web({ plugins, ...overrides } = {}) {
 		// the first `.tsx` test failed on syntax it should have understood.
 		plugins,
 		test: {
-			coverage: {
+			coverage: coverage({
 				exclude: [
 					'**/~sdk/**',
 					'**/routeTree.gen.ts',
@@ -25,15 +27,7 @@ export function web({ plugins, ...overrides } = {}) {
 					'**/main.tsx',
 					'**/*.config.ts',
 				],
-				provider: 'v8',
-				reporter: ['text', 'json-summary', 'json'],
-				thresholds: {
-					branches: FLOOR,
-					functions: FLOOR,
-					lines: FLOOR,
-					statements: FLOOR,
-				},
-			},
+			}),
 			environment: 'jsdom',
 			passWithNoTests: false,
 			...overrides,

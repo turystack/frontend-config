@@ -25,6 +25,12 @@ jobs:
       # dependency is the biome the fixtures are proved against.
       - run: pnpm install
 
+      # This package restates @turystack/config rather than extending it: Biome
+      # ignores a nested `extends` silently, so a chain through a shared package
+      # applies nothing and reports nothing. Restating drifts, so it is compared.
+      - name: Baseline agreement
+        run: pnpm check:baseline
+
       # Every GritQL rule ships a pair — one file that must produce its
       # diagnostic, one that must produce none. The pair is what stops a rule
       # from silently catching nothing after the code around it changes, which
