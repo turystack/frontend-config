@@ -13,6 +13,8 @@
 			"**/vite.config.ts",
 			"**/kubb.config.ts",
 			"**/app.config.ts",
+			"!**/dist",
+			"!**/coverage*",
 			"!**/src/routeTree.gen.ts",
 			"!**/src/~sdk",
 			"!**/*.css"
