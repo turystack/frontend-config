@@ -1,0 +1,13 @@
+// PROP-2 — an inline union is a value domain with no name. Nothing else can
+// import it, a story cannot iterate it, and adding a member means editing every
+// place that restated it.
+//
+// Type members do not bind through a snippet, so the node is matched by regex:
+// a prop whose type is two or more string literals joined by `|`.
+$node where {
+  $node <: r"\w+\??:\s*'[^']+'(?:\s*\|\s*'[^']+')+",
+  register_diagnostic(
+    span = $node,
+    message = "PROP-2: name and export the union (`type ButtonVariant = …`) — an inline union cannot be imported, iterated or extended."
+  )
+}

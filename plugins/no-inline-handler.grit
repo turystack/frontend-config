@@ -1,0 +1,10 @@
+// COM-L1 — an event prop takes a named function.
+//
+// An inline lambda is a new reference on every render, so every memoized child
+// below it re-renders, and the handler has no name in a stack trace or a test.
+`onClick={($params) => $body}` where {
+  register_diagnostic(
+    span = $body,
+    message = "COM-L1: pass a named handler — an inline lambda is a new reference on every render."
+  )
+}

@@ -1,0 +1,19 @@
+// FRM-10 — a form that navigates decides where the whole screen goes, which
+// makes it unusable inside a dialog, a drawer or a wizard step. Emitting
+// `onSuccess` leaves that decision with the parent, which is the only place
+// that knows the surrounding surface.
+//
+// A callee name is an identifier node, and an identifier matches a regex, not
+// an `or` of snippets.
+`$submit($handler)` where {
+  $submit <: r"(?:handleSubmit|onSubmit|submitHandler)",
+  $handler <: contains or {
+    `navigate($to)`,
+    `router.push($to)`,
+    `$router.navigate($to)`
+  },
+  register_diagnostic(
+    span = $handler,
+    message = "FRM-10: emit `onSuccess` and let the parent decide. A form that navigates cannot be reused inside a dialog or a wizard."
+  )
+}

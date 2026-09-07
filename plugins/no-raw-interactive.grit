@@ -1,0 +1,11 @@
+// CPS-1 — an interactive element is never raw HTML.
+//
+// A `div` with a click handler has no role, no keyboard, no focus and no
+// disabled state. Every one of those has to be added by hand, and the ones
+// nobody remembers are invisible to whoever shipped it.
+`<div onClick={$handler}>$children</div>` where {
+  register_diagnostic(
+    span = $handler,
+    message = "CPS-1: use an accessible headless primitive — a clickable div has no role, keyboard or focus."
+  )
+}

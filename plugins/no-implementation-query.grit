@@ -1,0 +1,11 @@
+// TST-5 / TST-1 — a test queries by role and accessible name.
+//
+// `querySelector` binds the test to the DOM structure, so a refactor that keeps
+// behaviour identical breaks it — and the test that fails most often is the one
+// people stop trusting.
+`$container.querySelector($selector)` where {
+  register_diagnostic(
+    span = $selector,
+    message = "TST-5: query by role and accessible name — a selector asserts structure, not behaviour."
+  )
+}

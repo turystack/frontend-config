@@ -1,0 +1,11 @@
+// PRM-1 — a conditional action goes through the `Protected` primitive.
+//
+// An inline check is a decision nobody can change centrally: the day denial
+// stops hiding and starts rendering inert with a reason, every one of them has
+// to be found — and the ones missed keep hiding.
+`$permissions.includes($id)` where {
+  register_diagnostic(
+    span = $permissions,
+    message = "PRM-1: wrap the action in Protected — an inline check cannot be changed centrally."
+  )
+}

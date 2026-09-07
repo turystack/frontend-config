@@ -1,0 +1,15 @@
+// AXS-3 — the focus indicator is part of the component's styles and is never
+// removed. A component that hides focus to look cleaner is broken for anyone
+// navigating by keyboard, and the breakage is invisible to whoever shipped it.
+//
+// Matched by regex rather than by a string-literal pattern: Grit's literal
+// patterns do not bind a bare string here, so the class is matched wherever it
+// appears — in a `tv()` base, a variant or a className. Verified against
+// fixtures/fail/focus.tsx and fixtures/pass/focus.tsx.
+$node where {
+  $node <: r".*focus:outline-none.*",
+  register_diagnostic(
+    span = $node,
+    message = "AXS-3: never remove the focus ring — style it from the theme tokens instead."
+  )
+}

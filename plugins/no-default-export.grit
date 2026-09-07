@@ -1,0 +1,16 @@
+// CMP-L1 / RTE-L1 — named exports always.
+//
+// A default export is renamed silently at every import site, so the same
+// component travels under three names and no search finds all of them. It also
+// breaks the barrel: `export *` cannot re-export a default.
+//
+// Matched by regex on the node: Grit does not bind `export default $what` as a
+// pattern here, and the statement is unambiguous as text. Verified against
+// fixtures/{fail,pass}/no-default-export.ts.
+$node where {
+  $node <: r"export default .*",
+  register_diagnostic(
+    span = $node,
+    message = "CMP-L1: named export always — a default is renamed silently at every call site."
+  )
+}

@@ -1,0 +1,11 @@
+// TST-6 — interaction in a test uses real user events.
+//
+// `fireEvent` dispatches one synthetic event. A real click is a sequence —
+// pointer down, focus, mouse up, click — and a component that only responds to
+// the synthetic one is broken for every actual user while its test passes.
+`fireEvent.$kind($args)` where {
+  register_diagnostic(
+    span = $kind,
+    message = "TST-6: use user-event — fireEvent dispatches one synthetic event, a real interaction is a sequence."
+  )
+}

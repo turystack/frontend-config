@@ -1,0 +1,13 @@
+// ARC-DEL-8 — a filter kept in `useState` cannot be shared, cannot be reloaded
+// and cannot be reached with the back button. The user experiences it as the
+// screen forgetting what they were looking at.
+//
+// The variable name is the signal, and it is a reliable one: state that people
+// name `page`, `filters` or `sort` is state they expect to survive a reload.
+`const [$state, $setState] = useState($initial)` where {
+  $state <: r"(?:page|pageSize|offset|cursor|filters?|sort|sorting|order|orderBy|tab|activeTab|selectedTab|query|search|searchTerm|q)",
+  register_diagnostic(
+    span = $state,
+    message = "ARC-DEL-8: navigable state lives in the address. In `useState` it cannot be shared, reloaded or reached with the back button."
+  )
+}

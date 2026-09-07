@@ -1,0 +1,8 @@
+// PROP-1 / STY-1 — `className` is never a public prop.
+//
+// The whole visual resolve is internal: a class arriving from outside makes the
+// component impossible to restyle centrally, and turns every consumer into a
+// place the design can drift.
+`className?: $type` where {
+  register_diagnostic(span = $type, message = "PROP-1: className is not a public prop — expose a semantic variant instead.")
+}

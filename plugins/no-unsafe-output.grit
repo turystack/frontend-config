@@ -1,0 +1,17 @@
+// ARC-SEC-10 — validating the input tells you the string was well formed, not
+// that it is safe in the interpreter it lands in. The same value is harmless as
+// text and executable as markup, so the neutralization belongs at the output.
+or {
+  `dangerouslySetInnerHTML={$html}` where {
+    register_diagnostic(
+      span = $html,
+      message = "ARC-SEC-10: neutralize at the output. Render as text, or sanitize for this destination before injecting markup."
+    )
+  },
+  `$target.innerHTML = $value` where {
+    register_diagnostic(
+      span = $value,
+      message = "ARC-SEC-10: assigning `innerHTML` hands the string to the HTML parser. Use `textContent`, or sanitize for this destination."
+    )
+  }
+}

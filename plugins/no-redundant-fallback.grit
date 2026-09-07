@@ -1,0 +1,12 @@
+// COM-L2 — no `?? false` or `?? ''` when the target already accepts
+// `undefined`.
+//
+// The fallback looks defensive and is destructive: it turns "not known yet"
+// into "known to be false", so a control renders enabled during loading and the
+// user clicks something that was never available.
+`$value ?? false` where {
+  register_diagnostic(
+    span = $value,
+    message = "COM-L2: pass undefined through — `?? false` turns 'not known yet' into 'known to be false'."
+  )
+}

@@ -1,0 +1,17 @@
+// CPS-3 — render polymorphism goes through `asChild`, never an `as` prop.
+//
+// `as` accepts an arbitrary element, so the component loses control of what it
+// renders: its accessibility wiring, its ref forwarding and its event handling
+// all assume a shape the consumer just replaced.
+//
+// Matched by regex rather than as a JSX attribute: Grit binds neither
+// `as=$value` nor an element pattern carrying it. The word boundary is what
+// keeps `hasError=` and `alias=` out — `asChild` has no `=` after `as`.
+// Verified against fixtures/{fail,pass}/no-as-prop.tsx.
+$node where {
+  $node <: r".*\bas=.*",
+  register_diagnostic(
+    span = $node,
+    message = "CPS-3: use asChild — an `as` prop hands control of the render to the consumer."
+  )
+}

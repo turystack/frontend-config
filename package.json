@@ -9,7 +9,8 @@
 		"./tsconfig.web": "./tsconfig.web.json",
 		"./tsconfig.web.json": "./tsconfig.web.json",
 		"./tsconfig.mobile": "./tsconfig.mobile.json",
-		"./tsconfig.mobile.json": "./tsconfig.mobile.json"
+		"./tsconfig.mobile.json": "./tsconfig.mobile.json",
+		"./vitest": "./vitest.base.js"
 	},
 	"publishConfig": {
 		"access": "public"
@@ -19,11 +20,19 @@
 	},
 	"files": [
 		"biome.json",
+		"plugins",
+		"tsconfig.mobile.json",
 		"tsconfig.web.json",
-		"tsconfig.mobile.json"
+		"vitest.base.js"
 	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/turystack/frontend-config.git"
+	},
+	"scripts": {
+		"check:fixtures": "node scripts/check-fixtures.mjs"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.2.2"
 	}
 }

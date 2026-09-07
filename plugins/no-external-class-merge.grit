@@ -1,0 +1,13 @@
+// STY-L3 — `cn()` merges internal conditional classes; it never accepts a
+// class from outside.
+//
+// Merging an incoming `className` is how `className` becomes a public prop
+// through the back door: the type says it is internal, the implementation says
+// otherwise, and the visual resolve is no longer the component's.
+`cn($args)` where {
+  $args <: contains r".*className.*",
+  register_diagnostic(
+    span = $args,
+    message = "STY-L3: cn() merges internal classes only — merging an incoming className reopens PROP-1."
+  )
+}

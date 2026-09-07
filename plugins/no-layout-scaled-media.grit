@@ -1,0 +1,10 @@
+// PRF-3 — an image scaled by CSS still downloaded at its full size, and still
+// reserved no space before it arrived. The dimensions belong on the element so
+// the browser can lay out and the source can be picked at the right size.
+`<img $attributes />` where {
+  $attributes <: not contains or { `width={$expression}`, `width=$literal` },
+  register_diagnostic(
+    span = $attributes,
+    message = "PRF-3: declare `width` and `height` on the media. Scaling by layout downloads the full asset and shifts the page when it lands."
+  )
+}

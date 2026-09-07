@@ -1,0 +1,12 @@
+// STY-9 — light and dark are resolved by the tokens, never by the component.
+//
+// A component that reads the colour scheme decides appearance in a second
+// place, so the token set stops being the whole answer — and the next theme
+// works everywhere except in the components that branched.
+`$scheme === $value` where {
+  $scheme <: r".*[Cc]olorScheme.*",
+  register_diagnostic(
+    span = $scheme,
+    message = "STY-9: read a token — a component that branches on the scheme decides appearance outside the token set."
+  )
+}

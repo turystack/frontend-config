@@ -1,0 +1,16 @@
+// STY-2 — a class decided in the render is a style the variant system does not
+// know about. It cannot be listed in a story, cannot be overridden by a
+// consumer, and the next variant added will not compose with it.
+//
+// The attribute binds; the expression inside it does not bind through the
+// attribute snippet, so it is tested as a second step.
+`className={$expression}` where {
+  $expression <: or {
+    `$condition ? $then : $else`,
+    `$left + $right`
+  },
+  register_diagnostic(
+    span = $expression,
+    message = "STY-2: declare it as a variant. A class decided in the render is a style the variant system cannot see."
+  )
+}

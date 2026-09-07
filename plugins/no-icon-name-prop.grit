@@ -1,0 +1,14 @@
+// PROP-11 / AXS-L1 — an icon enters as a node slot, never as a name string.
+//
+// A name string makes the component own a registry: it has to map every name,
+// ship every icon, and fail at runtime on a typo the compiler could have
+// caught. A node is passed in, and the consumer picks from the icon set.
+//
+// Matched by regex on the node: Grit does not bind a type member as a pattern.
+$node where {
+  $node <: r"icon\??: *string",
+  register_diagnostic(
+    span = $node,
+    message = "PROP-11: accept the icon as a node — a name string makes the component own a registry."
+  )
+}

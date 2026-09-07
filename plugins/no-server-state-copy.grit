@@ -1,0 +1,12 @@
+// ARC-CTR-7 / PRF-5 — contract data stays derived from its source; it is
+// never copied into local state that starts living on its own.
+//
+// A copy of `query.data` is a second answer to one question, and the screen
+// shows whichever rendered last. Staleness is a cache decision, not a reason
+// to mirror the server locally.
+`useState($source.data)` where {
+  register_diagnostic(
+    span = $source,
+    message = "ARC-CTR-7: read from the cache instead of copying server data into local state."
+  )
+}

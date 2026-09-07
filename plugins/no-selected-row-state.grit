@@ -1,0 +1,12 @@
+// TBL-8 — the row emits `onSelect`; the table holds no selected row.
+//
+// Selection kept inside the table is a second source of truth for something the
+// address already answers (`ARC-DEL-8`): reload the page and the selection is
+// gone, share the link and the recipient sees a different screen.
+`useState($initial)` where {
+  $initial <: r".*[Ss]electedRow.*",
+  register_diagnostic(
+    span = $initial,
+    message = "TBL-8: the table emits onSelect — selection that must survive a reload lives in the address."
+  )
+}

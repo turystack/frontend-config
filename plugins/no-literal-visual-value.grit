@@ -1,0 +1,14 @@
+// UIX-1 / UIX-6 — a hex colour or a pixel value written in a component is a
+// decision the design system never made. It looks right on the screen it was
+// written for, survives no theme change, and is invisible to anyone auditing
+// the palette.
+$node where {
+  $node <: or {
+    r"^['\"]#[0-9a-fA-F]{3,8}['\"]$",
+    r"^['\"][^'\"]*\b(?:[1-9][0-9]*)px\b[^'\"]*['\"]$"
+  },
+  register_diagnostic(
+    span = $node,
+    message = "UIX-1: use a token. A literal colour or pixel value is a design decision that lives outside the scale and outside the themes."
+  )
+}

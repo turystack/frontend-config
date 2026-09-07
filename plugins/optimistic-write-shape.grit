@@ -1,0 +1,11 @@
+// ARC-CON-10 — an optimistic update that cannot roll back leaves the screen
+// showing a write the server rejected. The user believes it happened, and the
+// only thing that corrects them is a reload.
+`useMutation($options)` where {
+  $options <: contains `onMutate: $optimistic`,
+  $options <: not contains `onError: $rollback`,
+  register_diagnostic(
+    span = $optimistic,
+    message = "ARC-CON-10: an optimistic write declares its rollback. Without `onError` the screen keeps a write the server refused."
+  )
+}

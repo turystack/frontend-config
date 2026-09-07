@@ -1,0 +1,12 @@
+// FRM-5 — `defaultValues` go straight into construction.
+//
+// Resetting from an effect renders the form once with the wrong values, then
+// again with the right ones. The user sees the flash, an uncontrolled input can
+// keep the first value, and the bug only appears when the data is slow.
+`useEffect($callback, $deps)` where {
+  $callback <: contains `$form.reset($args)`,
+  register_diagnostic(
+    span = $callback,
+    message = "FRM-5: pass defaultValues into useForm — resetting from an effect renders the wrong values first."
+  )
+}

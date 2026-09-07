@@ -15,15 +15,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+          cache: 'pnpm'
 
-      # This package ships content, not code: no dependencies, no lockfile, so
-      # there is nothing to install or compile. What can still break is the
-      # manifest and the `files` glob, and that is exactly what is checked.
-      - name: Validate manifest
-        run: node -e "JSON.parse(require('fs').readFileSync('package.json','utf8'))"
+      # No lockfile here: this package ships config and plugins, and its only
+      # dependency is the biome the fixtures are proved against.
+      - run: pnpm install
 
-      - name: Verify publishable contents
-        run: npm pack --dry-run
+      # Every GritQL rule ships a pair — one file that must produce its
+      # diagnostic, one that must produce none. The pair is what stops a rule
+      # from silently catching nothing after the code around it changes, which
+      # is the failure mode a rule written from one example always has.
+      - name: Rule fixtures
+        run: pnpm check:fixtures
+        env:
+          BIOME: ./node_modules/.bin/biome

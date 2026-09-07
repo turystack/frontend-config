@@ -1,0 +1,12 @@
+// STY-8 / UIX-1 — every visual value is a token.
+//
+// A hex value in a component is a colour that exists in one file. The rebrand
+// then lands everywhere except there, and nothing reports the disagreement —
+// it just looks slightly wrong on one screen.
+$node where {
+  $node <: r".*#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b.*",
+  register_diagnostic(
+    span = $node,
+    message = "STY-8: reference a theme token — a hex value is a colour only this file knows about."
+  )
+}

@@ -1,0 +1,6 @@
+// RTE-4 — components fetch through the generated SDK hooks, not through the
+// router loader. A loader puts data fetching in the navigation layer, where the
+// cache does not reach it and the five outcomes have nowhere to live.
+`useLoaderData($args)` where {
+  register_diagnostic(span = $args, message = "RTE-4: fetch through the SDK hook — the loader has no cache and no five outcomes.")
+}

@@ -1,0 +1,11 @@
+// AXS-4 — overlay focus behaviour is delegated to the headless primitive.
+//
+// Calling `.focus()` from an effect races the primitive's own focus trap: both
+// run, order is not guaranteed, and the bug it was added to fix comes back
+// intermittently — which is the hardest kind to believe.
+`$ref.current.focus($args)` where {
+  register_diagnostic(
+    span = $ref,
+    message = "AXS-4: let the headless primitive own focus — a manual .focus() races its trap."
+  )
+}

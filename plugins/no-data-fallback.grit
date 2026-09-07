@@ -1,0 +1,6 @@
+`$source.data ?? []` where {
+  register_diagnostic(
+    span = $source,
+    message = "UST-11: a failed read is not an empty list — pass the outcome to the surface, never a fallback."
+  )
+}

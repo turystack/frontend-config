@@ -1,0 +1,14 @@
+// PROP-7 — handing the caller a raw event makes every consumer write the same
+// `event.target.value`, and makes the prop untypeable for a primitive whose
+// value is a `T[]` or a `null`. The primitive knows how to read its own event;
+// the caller only wants the value.
+//
+// A Grit regex matches the *whole* node, so the pattern spans the entire
+// property signature rather than a fragment of it.
+$node where {
+  $node <: r"on[A-Z]\w*\??:\s*\(\s*\w+\s*:\s*(?:React\.)?(?:Change|Form|Mouse|Keyboard|Pointer|Focus)Event[\s\S]*",
+  register_diagnostic(
+    span = $node,
+    message = "PROP-7: deliver the domain value, not the platform event. `(value: string) => void`, never `(event: ChangeEvent) => void`."
+  )
+}

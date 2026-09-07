@@ -1,0 +1,14 @@
+// ERR-2 — the API already decided what to tell the user, in words the catalogue
+// keeps in sync with the rule that produced them. A literal string in the catch
+// replaces that with the frontend's guess, and it stops updating the day the
+// backend changes the reason.
+`try { $body } catch ($error) { $handler }` where {
+  $handler <: contains `$report($message)` where {
+    $report <: r"(?:toast\.\w+|setError|setErrorMessage|showError|notify\.\w+|setMessage)",
+    $message <: or { r"^['\"].+", r"^`.+" }
+  },
+  register_diagnostic(
+    span = $message,
+    message = "ERR-2: render `error.message` as it came. A literal here overwrites the catalogue's wording and never follows it."
+  )
+}

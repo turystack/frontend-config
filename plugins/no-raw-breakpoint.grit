@@ -1,0 +1,12 @@
+// RSP-2 — breakpoints come from the design system's tokens.
+//
+// A raw pixel width in a media query is a decision that exists in one file and
+// nowhere else, so the day the breakpoint moves, it moves everywhere except
+// here — and nothing reports the disagreement.
+$node where {
+  $node <: r".*min-width: *[0-9]+px.*",
+  register_diagnostic(
+    span = $node,
+    message = "RSP-2: use the design system's breakpoint token — a raw px width is a decision only this file knows."
+  )
+}
