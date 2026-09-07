@@ -24,7 +24,14 @@ import process from 'node:process'
 
 const ROOT = resolve(import.meta.dirname, '..')
 const FIXTURES = resolve(ROOT, 'fixtures')
-const BIOME = process.env.BIOME ?? 'biome'
+// Biome is spawned with `cwd` set to the fixtures directory, so a relative
+// override — which is what CI passes — resolves one level too deep and fails
+// as ENOENT even though the binary installed fine. Anchor a path-shaped value
+// to the package root; a bare name still goes through PATH.
+const configuredBiome = process.env.BIOME ?? 'biome'
+const BIOME = configuredBiome.includes('/')
+  ? resolve(ROOT, configuredBiome)
+  : configuredBiome
 
 const rules = readdirSync(resolve(ROOT, 'plugins'))
   .filter((file) => file.endsWith('.grit'))
