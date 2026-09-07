@@ -11,7 +11,10 @@
 		"./tsconfig.web.json": "./tsconfig.web.json",
 		"./tsconfig.mobile": "./tsconfig.mobile.json",
 		"./tsconfig.mobile.json": "./tsconfig.mobile.json",
-		"./vitest": "./vitest.base.js"
+		"./vitest": {
+			"types": "./vitest.base.d.ts",
+			"default": "./vitest.base.js"
+		}
 	},
 	"publishConfig": {
 		"access": "public"
@@ -24,6 +27,7 @@
 		"plugins",
 		"tsconfig.mobile.json",
 		"tsconfig.web.json",
+		"vitest.base.d.ts",
 		"vitest.base.js"
 	],
 	"repository": {

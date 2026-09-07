@@ -9,8 +9,13 @@ import { defineConfig } from 'vitest/config'
  */
 export const FLOOR = 85
 
-export function web(overrides = {}) {
+export function web({ plugins, ...overrides } = {}) {
 	return defineConfig({
+		// Plugins are a Vite concern, not a test one. They used to be spread into
+		// `test` along with everything else, where Vitest silently ignored them —
+		// so the React plugin was absent from every generated app's test run and
+		// the first `.tsx` test failed on syntax it should have understood.
+		plugins,
 		test: {
 			coverage: {
 				exclude: [
