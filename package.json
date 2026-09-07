@@ -2,7 +2,7 @@
 	"name": "@turystack/frontend-config",
 	"description": "Shared biome + TypeScript config for turystack web and mobile apps.",
 	"private": false,
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"packageManager": "pnpm@10.12.3",
 	"sideEffects": false,
 	"exports": {
