@@ -20,12 +20,18 @@ export function web({ plugins, ...overrides } = {}) {
 		plugins,
 		test: {
 			coverage: coverage({
+				// Composition roots: the router wires routes, the root route wires
+				// providers, the query client is configuration. A test for any of
+				// them asserts that the wiring is the wiring.
 				exclude: [
-					'**/~sdk/**',
-					'**/routeTree.gen.ts',
-					'**/*.types.ts',
-					'**/main.tsx',
 					'**/*.config.ts',
+					'**/*.types.ts',
+					'**/~sdk/**',
+					'**/main.tsx',
+					'**/query-client.ts',
+					'**/routeTree.gen.ts',
+					'**/router.tsx',
+					'**/routes/__root.tsx',
 				],
 			}),
 			environment: 'jsdom',
